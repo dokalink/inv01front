@@ -1,73 +1,125 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
       <h1 class="title">
-        inv01front
+        {{ title }}
       </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+      <ul>
+        <li id="all" @click="filterDomen = ''">
+          Все
+        </li>
+        <li id="lenta" @click="filterDomen = 'lenta'">
+          Lenta.ru
+        </li>
+        <li id="mos" @click="filterDomen = 'mos'">
+          Mos.ru
+        </li>
+      </ul>
+      <label>
+        <input
+          v-model.trim="search"
+          type="text"
+          placeholder="Поиск по названию товара"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+      </label>
+      <div @click="imgOn = true">Вкл</div>
+      <div @click="imgOn = false">Откл</div>
+      <div
+        v-for=" post in displayedPosts"
+        :key="displayedPosts.post"
+      >
+        <div>{{ post.title }}</div>
+        <div>
+          <img
+            v-show="imgOn"
+            :src="post.img"
+            :alt="post.title"
+          >
+        </div>
+        <div>{{ post.content }}</div>
+        <div><a :href="post.link">Подробнее...</a></div>
       </div>
     </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <button
+            v-for="pageNumber in pages"
+            type="button"
+            class="page-link"
+            @click="page = pageNumber"
+          >
+            {{ pageNumber }}
+          </button>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  filters: {
+  },
+  data() {
+    return {
+      title: 'Список новостей',
+      posts: [''],
+      page: 1,
+      perPage: 9,
+      pages: [],
+      search: '',
+      filterDomen: '',
+      imgOn: true,
+    };
+  },
+  computed: {
+    displayedPosts() {
+      return this.paginate(this.displayFilter);
+    },
+    displayFilter() {
+      return this.posts.filter((a) => {
+        if (a) {
+          const searchString = `${a.title} ${a.content}`;
+          return (searchString.toLowerCase().indexOf(this.search.toLowerCase()) !== -1)
+              && (a.link.indexOf(this.filterDomen) !== -1);
+        } return false;
+      });
+    },
+  },
+  watch: {
+    displayFilter() {
+      this.setPages();
+    },
+    filterDomen() {
+      this.setPages();
+    },
+  },
+  created() {
+    this.getPosts();
+  },
+  methods: {
+    async getPosts() {
+      const articles = await this.$axios.$get('https://inv01back.herokuapp.com/api/rss');
+      this.posts = articles;
+    },
+    setPages() {
+      const numberOfPages = Math.ceil(this.displayFilter.length / this.perPage);
+      this.pages = [];
+      for (let index = 1; index <= numberOfPages; index++) {
+        this.pages.push(index);
+      }
+    },
+    paginate(posts) {
+      const { page } = this;
+      const { perPage } = this;
+      const from = (page * perPage) - perPage;
+      const to = (page * perPage);
+      return posts.slice(from, to);
+    },
+  },
+};
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
