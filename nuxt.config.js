@@ -21,7 +21,10 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
-
+  server: {
+   // port: 80, // default: 3000
+    host: '0.0.0.0', // default: localhost
+  },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
   ],
