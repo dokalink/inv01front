@@ -4,7 +4,10 @@
       <div class="header__wrap">
         <div class="header__title">
           <h1>{{ title }}</h1>
-          <div class="header__update">
+          <div
+            class="header__update"
+            @click="getPosts"
+          >
             <svg
               width="20"
               height="20"
@@ -45,69 +48,85 @@
     </header>
     <div class="filter">
       <div class="filter__domen">
-        <div class="filter__domitem filter__domitem-active">
+        <div
+          :class="{ 'filter__domitem-active': filterDomen == '' }"
+          class="filter__domitem"
+          @click="filterDomen = ''"
+        >
           Все
         </div>
-        <div class="filter__domitem">
+        <div
+          :class="{ 'filter__domitem-active': filterDomen == 'lenta' }"
+          class="filter__domitem"
+          @click="filterDomen = 'lenta'"
+        >
           Lenta.ru
         </div>
-        <div class="filter__domitem">
+        <div
+          :class="{ 'filter__domitem-active': filterDomen == 'mos' }"
+          class="filter__domitem"
+          @click="filterDomen = 'mos'"
+        >
           Mos.ru
         </div>
       </div>
       <div class="filter__image">
-        <div class="filter__imgon">
+        <div
+          class="filter__imgon"
+          @click="imgOn = true"
+        >
           <svg
+            :class="{ 'filter__icon-active': imgOn }"
+            class="filter__icon"
             width="18"
             height="18"
             viewBox="0 0 18 18"
-            fill="none"
+            fill="#0029FF"
             xmlns="http://www.w3.org/2000/svg"
           >
             <rect
               width="18"
               height="8"
-              fill="#C4C4C4"
             />
             <rect
               y="10"
               width="18"
               height="8"
-              fill="#C4C4C4"
             />
           </svg>
         </div>
-        <div class="filter__imgoff">
+        <div
+          class="filter__imgoff"
+          @click="imgOn = false"
+        >
           <svg
+            :class="{ 'filter__icon-active': !imgOn }"
+            class="filter__icon"
             width="18"
             height="18"
             viewBox="0 0 18 18"
-            fill="none"
+            fill="#0029FF"
             xmlns="http://www.w3.org/2000/svg"
           >
             <rect
               width="8"
               height="8"
-              fill="#0029FF"
             />
             <rect
               y="10"
               width="8"
               height="8"
-              fill="#0029FF"
             />
             <rect
               x="10"
               width="8"
               height="8"
-              fill="#0029FF"
             />
             <rect
               x="10"
               y="10"
               width="8"
               height="8"
-              fill="#0029FF"
             />
           </svg>
         </div>
@@ -120,9 +139,12 @@
         :key="displayedPosts.post"
         class="articles__article article"
       >
-        <div class="image-box article__image">
+        <div
+          v-show="imgOn"
+          class="image-box article__image"
+        >
           <img
-            v-show="imgOn"
+
             class="image-box__image"
             :src="post.img"
             :alt="post.title"
@@ -206,6 +228,10 @@ export default {
         }
         return false;
       });
+    },
+    filterDomActive(dom) {
+      return;
+      this.filterDomen;
     },
   },
   watch: {
@@ -306,9 +332,13 @@ export default {
         border-radius: 50%;
         padding: 8px;
         margin-left: 15px;
+        cursor: pointer;
       }
     }
     .filter {
+      &__domen {
+        cursor: pointer;
+      }
       display: flex;
       justify-content: space-between;
       padding: 26px 0 28px 0;
@@ -333,7 +363,6 @@ export default {
     }
   }
    .image-box {
-     background-color: orangered;
      height: 100px;
      width: 200px;
      overflow: hidden;
@@ -363,5 +392,13 @@ export default {
     }
 
   }
-
+  .filter__imgon {
+  }
+.filter__icon {
+  &-active {
+    rect {
+      fill: #C4C4C4;
+    }
+  }
+}
 </style>
