@@ -24,10 +24,10 @@
         </div>
 
         <div class="header__search">
-          <input
+          <input class="header__input"
             v-model.trim="search"
             type="text"
-            placeholder="Поиск по названию товара"
+            placeholder="Поиск по названию"
           >
           <svg
             width="20"
@@ -76,7 +76,7 @@
           @click="imgOn = true"
         >
           <svg
-            :class="{ 'filter__icon-active': imgOn }"
+            :class="{ 'filter__icon-active': !imgOn }"
             class="filter__icon"
             width="18"
             height="18"
@@ -100,7 +100,7 @@
           @click="imgOn = false"
         >
           <svg
-            :class="{ 'filter__icon-active': !imgOn }"
+            :class="{ 'filter__icon-active': imgOn }"
             class="filter__icon"
             width="18"
             height="18"
@@ -138,35 +138,43 @@
         v-for=" post in displayedPosts"
         :key="displayedPosts.post"
         class="articles__article article"
+        :class="{ 'articles__article-imgon': imgOn }"
       >
-        <div
-          v-show="imgOn"
-          class="image-box article__image"
-        >
-          <img
-
-            class="image-box__image"
-            :src="post.img"
-            :alt="post.title"
+        <div class="article__header">
+          <div
+            v-show="imgOn"
+            class="article__imagebox"
           >
-        </div>
-        <div class="article__title">
-          {{ post.title }}
-        </div>
-        <div class="article__content">
-          {{ post.content }}
-        </div>
-        <a
-          class="article__link"
-          :href="post.link"
-          target="_blank"
-        >Подробнее</a>
-        <div class="article__footer">
-          <div class="article__url">
-            www.mos.ru
+            <img
+              class="article__image"
+              :src="post.img"
+              :alt="post.title"
+            >
           </div>
-          <div class="article__date">
-            10.01.2020
+          <div>
+            <h2 class="article__title">
+              {{ post.title }}
+            </h2>
+            <div class="article__content">
+              {{ post.content }}
+            </div>
+          </div>
+        </div>
+
+        <div class="article__footer">
+          <a
+            class="article__link"
+            :href="post.link"
+            target="_blank"
+          >Подробнее</a>
+          <div class="article__footer article__footer-align">
+            <div class="article__url">
+              {{ post.link.search('lenta.ru') != -1 ? 'www.lenta.ru' : '' }}
+              {{ post.link.search('mos.ru') != -1 ? 'www.mos.ru' : '' }}
+            </div>
+            <div class="article__date">
+              {{ post.date }}
+            </div>
           </div>
         </div>
       </div>
@@ -211,7 +219,7 @@ export default {
       pages: [],
       search: '',
       filterDomen: '',
-      imgOn: true,
+      imgOn: false,
     };
   },
   computed: {
@@ -228,10 +236,6 @@ export default {
         }
         return false;
       });
-    },
-    filterDomActive(dom) {
-      return;
-      this.filterDomen;
     },
   },
   watch: {
@@ -308,6 +312,19 @@ export default {
     }
 
     .header {
+      &__search {
+        background-color: #ffffff;
+        border: 1px solid #cecece;
+        border-radius: 5px;
+        padding: 10px ;
+      }
+      &__input {
+        color: #000;
+        border: 0 solid transparent;
+        outline: 0;
+        background: 0 0;
+        width: 250px;
+      }
 
       &__wrap {
         display: flex;
@@ -356,22 +373,7 @@ export default {
         display: flex;
       }
     }
-  .article {
-    padding: 30px;
-    background-color: #ffffff;
-    &__image {
-    }
-  }
-   .image-box {
-     height: 100px;
-     width: 200px;
-     overflow: hidden;
-     &__image {
-       max-width: 100%;
-       height: auto;
-       display: block;
-     }
-   }
+
   .articles {
     display: flex;
     flex-wrap:wrap;
@@ -380,25 +382,76 @@ export default {
     &__article {
       width: calc(1/2*100% - 20px);
       margin: 10px;
-
+      &-imgon {
+        width: calc(1/1*100% - 20px);
+      }
     }
+
   }
   .pagination {
     display: flex;
+    justify-content: center;
     font-size: 18px;
     font-weight: bold;
+    cursor: pointer;
+    padding-top: 50px;
     &__item {
       padding: 10px;
     }
 
   }
   .filter__imgon {
+    padding-right: 10px;
   }
-.filter__icon {
-  &-active {
-    rect {
-      fill: #C4C4C4;
+  .filter__icon {
+    &-active {
+      rect {
+        fill: #C4C4C4;
     }
   }
 }
+
+  .article {
+    padding: 30px 30px 4px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__header{
+      display: flex;
+    }
+    &__title {
+      color: #0029FF;
+      font-size: 18px;
+      font-weight: 700;
+      padding-bottom: 25px;
+    }
+    &__content {
+      font-size: 14px;
+      padding-bottom: 27px;
+    }
+    &__link {
+      font-size: 14px;
+      font-weight: 400;
+      color: #0029FF;
+    }
+    &__imagebox {
+      margin-right: 30px;
+    }
+    &__image {
+      width: 200px;
+      height: 100px;
+      object-fit: cover;
+    }
+  }
+.article__footer {
+  padding-top: 14px;
+  color: #DCDCDC;
+  font-size: 14px;
+  &-align {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 </style>
