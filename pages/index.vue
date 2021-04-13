@@ -344,7 +344,7 @@ export default {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    margin: 0 20px;
+    padding: 0 20px;
   }
 
   .header {
