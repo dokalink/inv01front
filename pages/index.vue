@@ -154,7 +154,11 @@
           </div>
           <div>
             <h2 class="article__title">
-              {{ post.title }}
+              <a
+                class="article__titlelink"
+                :href="post.link"
+                target="_blank"
+              >{{ post.title }}</a>
             </h2>
             <div class="article__content">
               {{ post.content }}
@@ -164,6 +168,7 @@
 
         <div class="article__footer">
           <a
+            v-show="!imgOn"
             class="article__link"
             :href="post.link"
             target="_blank"
@@ -428,6 +433,9 @@ export default {
       font-size: 18px;
       font-weight: 700;
       padding-bottom: 25px;
+    }
+    &__titlelink {
+      text-decoration: none;
     }
     &__content {
       font-size: 14px;
