@@ -220,7 +220,7 @@ export default {
     return {
       posts: [''],
       page: 1,
-      perPage: 6,
+      perPage: 4,
       pages: [],
       search: '',
       filterDomen: '',
@@ -244,6 +244,9 @@ export default {
     },
   },
   watch: {
+    imgOn(a) {
+      this.imgOn ? this.perPage = 3 : this.perPage = 4;
+    },
     displayFilter() {
       this.page = 1;
       this.setPages();
