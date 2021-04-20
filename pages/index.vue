@@ -3,7 +3,7 @@
     <header class="header">
       <div class="header__wrap">
         <div class="header__title">
-          <h1>{{ title }}</h1>
+          <h1>Список новостей</h1>
           <div
             class="header__update"
             @click="getPosts"
@@ -218,7 +218,6 @@ export default {
   filters: {},
   data() {
     return {
-      title: 'Список новостей',
       posts: [''],
       page: 1,
       perPage: 6,
