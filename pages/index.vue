@@ -6,7 +6,7 @@
           <h1>Список новостей</h1>
           <div
             class="header__update"
-            @click="getPosts"
+            @click="getUpdate"
           >
             <svg
               width="20"
@@ -216,6 +216,10 @@
 <script>
 export default {
   filters: {},
+  async asyncData(context) {
+    const posts = await context.$axios.$get('https://inv01back.herokuapp.com/api/rss');
+    return { posts };
+  },
   data() {
     return {
       posts: [''],
@@ -244,7 +248,7 @@ export default {
     },
   },
   watch: {
-    imgOn(a) {
+    imgOn() {
       this.imgOn ? this.perPage = 3 : this.perPage = 4;
     },
     displayFilter() {
@@ -256,13 +260,14 @@ export default {
     },
   },
   created() {
-    this.getPosts();
+    this.setPages();
   },
   methods: {
-    async getPosts() {
+    async getUpdate() {
       const articles = await this.$axios.$get('https://inv01back.herokuapp.com/api/rss');
       this.posts = articles;
     },
+
     setPages() {
       const numberOfPages = Math.ceil(this.displayFilter.length / this.perPage);
       this.pages = [];
