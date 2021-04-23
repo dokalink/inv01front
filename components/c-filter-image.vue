@@ -1,0 +1,88 @@
+<template>
+  <div class="filter__image">
+    <div
+      class="filter__imgon"
+      @click="$emit('imgOn', true)"
+    >
+      <svg
+        :class="{ 'filter__icon-active': !imgOn }"
+        class="filter__icon"
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="#0029FF"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          width="18"
+          height="8"
+        />
+        <rect
+          y="10"
+          width="18"
+          height="8"
+        />
+      </svg>
+    </div>
+    <div
+      class="filter__imgoff"
+     @click="$emit('imgOn', false)"
+
+    >
+      <svg
+        :class="{ 'filter__icon-active': imgOn }"
+        class="filter__icon"
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="#0029FF"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          width="8"
+          height="8"
+        />
+        <rect
+          y="10"
+          width="8"
+          height="8"
+        />
+        <rect
+          x="10"
+          width="8"
+          height="8"
+        />
+        <rect
+          x="10"
+          y="10"
+          width="8"
+          height="8"
+        />
+      </svg>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    imgOn: {
+      type: Boolean,
+      default: false,
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+    .filter__imgon {
+        padding-right: 10px;
+    }
+    .filter__icon {
+        &-active {
+            rect {
+                fill: #C4C4C4;
+            }
+        }
+    }
+</style>
