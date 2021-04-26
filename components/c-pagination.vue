@@ -8,7 +8,7 @@
       </p>
       <nuxt-link
         v-if="pag !== '...'"
-        :to="{ name: 'new-id', params: {id : pag , posts: posts, imgOn: imgOn, search: search
+        :to="{ name: 'id', params: {id : pag , posts: posts, imgOn: imgOn, search: search
                                         , filterDomen: filterDomen, perPage: perPage}}"
         class="pagination__item"
       >
