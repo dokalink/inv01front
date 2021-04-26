@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="article__wrapper">
     <div class="article__header">
       <div
         v-show="imgOn"
@@ -34,8 +34,7 @@
       >Подробнее</a>
       <div class="article__footer article__footer-align">
         <div class="article__url">
-          {{ post.link.search('lenta.ru') !== -1 ? 'www.lenta.ru' : '' }}
-          {{ post.link.search('mos.ru') !== -1 ? 'www.mos.ru' : '' }}
+          {{ post.linkdom }}
         </div>
         <div class="article__date">
           {{ post.date }}
@@ -53,8 +52,8 @@ export default {
       default: false,
     },
     post: {
-      type: Array,
-      default: [],
+      type: Object,
+      default: {},
     },
   },
 };
@@ -82,7 +81,12 @@ export default {
     }
     &__content {
       font-size: 14px;
-      padding-bottom: 27px;
+      margin-bottom: 27px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
     &__link {
       font-size: 14px;
@@ -96,6 +100,12 @@ export default {
       width: 200px;
       height: 100px;
       object-fit: cover;
+    }
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
     }
   }
   .article__footer {

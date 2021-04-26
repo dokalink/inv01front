@@ -1,26 +1,26 @@
 <template>
   <div class="filter__domen">
-    <div
-      :class="{ 'filter__domitem-active': filterDomen == '' }"
+    <button
+      :class="{ 'filter__domitem-active': filterDomen === '' }"
       class="filter__domitem"
       @click="$emit('filterDomen','')"
     >
       Все
-    </div>
-    <div
-      :class="{ 'filter__domitem-active': filterDomen == 'lenta' }"
+    </button>
+    <button
+      :class="{ 'filter__domitem-active': filterDomen === 'www.lenta.ru' }"
       class="filter__domitem"
-      @click="$emit('filterDomen','lenta')"
+      @click="$emit('filterDomen','www.lenta.ru')"
     >
       Lenta.ru
-    </div>
-    <div
-      :class="{ 'filter__domitem-active': filterDomen == 'mos' }"
+    </button>
+    <button
+      :class="{ 'filter__domitem-active': filterDomen === 'www.mos.ru' }"
       class="filter__domitem"
-      @click="$emit('filterDomen','mos')"
+      @click="$emit('filterDomen','www.mos.ru')"
     >
       Mos.ru
-    </div>
+    </button>
   </div>
 </template>
 

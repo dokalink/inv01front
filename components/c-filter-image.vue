@@ -1,7 +1,7 @@
 <template>
   <div class="filter__image">
-    <div
-      class="filter__imgon"
+    <button
+            class="filter__imgon"
       @click="$emit('imgOn', true)"
     >
       <svg
@@ -23,9 +23,9 @@
           height="8"
         />
       </svg>
-    </div>
-    <div
-      class="filter__imgoff"
+    </button >
+    <button
+            class="filter__imgoff"
      @click="$emit('imgOn', false)"
 
     >
@@ -59,7 +59,7 @@
           height="8"
         />
       </svg>
-    </div>
+    </button >
   </div>
 </template>
 
