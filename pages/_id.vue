@@ -91,9 +91,7 @@ export default {
       this.setPages();
     },
   },
-  created() {
-    console.log(this.$route.params);
-  },
+
   created() {
     this.setPages();
   },
