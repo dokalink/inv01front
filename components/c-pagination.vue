@@ -58,7 +58,6 @@ export default {
       return false;
     },
     paginations() {
-      console.log(this.$route.params.id);
       const pagMas = [];
       if (this.page > 3) { pagMas.push('1', '...'); }
       const mas = this.pages.slice(this.pageStart(this.page, this.pages.length),
