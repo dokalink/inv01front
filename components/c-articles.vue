@@ -32,8 +32,6 @@ export default {
 
 <style lang="scss" scoped>
 
-
-
   .article {
     padding: 30px 30px 4px;
     background-color: #ffffff;

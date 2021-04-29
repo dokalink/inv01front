@@ -3,7 +3,16 @@
     <header class="header">
       <div class="header__wrap">
         <c-title @getUpdate="getUpdate" />
-        <c-search v-model="search" />
+        <c-search
+          v-model="search"
+          :pages="pages"
+          :page="page"
+          :per-page="perPage"
+          :posts="posts"
+          :img-on="imgOn"
+          :search="search"
+          :filter-domen="filterDomen"
+        />
       </div>
     </header>
     <div class="filter">
@@ -47,7 +56,8 @@ export default {
       page: this.$route.params.id ? Number.parseInt(this.$route.params.id, 10) : 1,
       perPage: this.$route.params.perPage ? Number.parseInt(this.$route.params.perPage, 10) : 4,
       pages: [],
-      search: this.$route.params.search ? this.$route.params.search : '',
+      // search: this.$route.params.search ? this.$route.params.search : '',
+      search: this.$route.query.search ? this.$route.query.search : '',
       filterDomen: this.$route.params.filterDomen ? this.$route.params.filterDomen : '',
       imgOn: this.$route.params.imgOn ? this.$route.params.imgOn : false,
     };
@@ -80,6 +90,9 @@ export default {
     filterDomen() {
       this.setPages();
     },
+  },
+  created() {
+    console.log(this.$route.params);
   },
   created() {
     this.setPages();

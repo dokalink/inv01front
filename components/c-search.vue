@@ -1,11 +1,11 @@
 <template>
   <div class="header__search">
     <input
-            v-bind:value="value"
-            v-on:input="$emit('input', $event.target.value)"
+      :value="value"
       class="header__input"
       type="text"
       placeholder="Поиск по названию"
+      @input="$emit('input', $event.target.value)"
     >
     <svg
       width="20"
@@ -30,6 +30,49 @@ export default {
     value: {
       type: String,
       default: '',
+    },
+    posts: {
+      type: Array,
+      default: [],
+    },
+    pages: {
+      type: Array,
+      default: [],
+    },
+    page: {
+      type: Number,
+      default: 1,
+    },
+    perPage: {
+      type: Number,
+      default: 4,
+    },
+    imgOn: {
+      type: Boolean,
+      default: false,
+    },
+    search: {
+      type: String,
+      default: '',
+    },
+    filterDomen: {
+      type: String,
+      default: '',
+    },
+  },
+  watch: {
+    value() {
+      this.$router.push({
+        name: 'id',
+        params: {
+          id: this.pag,
+          posts: this.posts,
+          imgOn: this.imgOn,
+          filterDomen: this.filterDomen,
+          perPage: this.perPage,
+        },
+        query: { search: this.search },
+      });
     },
   },
 };
