@@ -35,9 +35,7 @@
 <script>
 
 export default {
-  filters: {},
   layout: 'project',
-  test: true,
   async asyncData(context) {
     if (context.route.params.posts) { return {}; }
     const posts = await context.$axios.$get('https://inv01back.herokuapp.com/api/rss');
