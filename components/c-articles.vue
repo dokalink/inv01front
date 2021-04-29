@@ -2,7 +2,7 @@
   <div class="articles">
     <div
       v-for=" post in displayedPosts"
-      :key="displayedPosts.post"
+      :key="post.link"
       class="articles__article article"
       :class="{ 'articles__article-imgon': imgOn }"
     >
