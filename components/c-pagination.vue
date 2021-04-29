@@ -67,6 +67,7 @@ export default {
       return pagMas;
     },
   },
+
   methods: {
     pageStart(carentPage, maxPages) {
       if (carentPage < 4) {

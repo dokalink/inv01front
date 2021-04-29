@@ -74,6 +74,7 @@ export default {
 
     imgOn() {
       this.imgOn ? this.perPage = 3 : this.perPage = 4;
+      this.setPages();
     },
     displayFilter() {
       this.setPages();
