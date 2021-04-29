@@ -9,8 +9,9 @@
       <nuxt-link
         v-if="pag !== '...'"
         :to="{ name: 'id', params: {id : pag , posts: posts, imgOn: imgOn, search: search
-                                        , filterDomen: filterDomen, perPage: perPage}}"
+                                    , filterDomen: filterDomen, perPage: perPage}}"
         class="pagination__item"
+        :class="{ 'link-active': linkActive & pag == 1}"
       >
         {{ pag }}
       </nuxt-link>
@@ -51,7 +52,12 @@ export default {
     },
   },
   computed: {
+    linkActive() {
+      if (!this.$route.params.id) { return true; }
+      return false;
+    },
     paginations() {
+      console.log(this.$route.params.id);
       const pagMas = [];
       if (this.page > 3) { pagMas.push('1', '...'); }
       const mas = this.pages.slice(this.pageStart(this.page, this.pages.length),
@@ -93,7 +99,7 @@ export default {
 
 <style lang="scss" >
   .pagination {
-     .nuxt-link-active{
+     .nuxt-link-active, .link-active{
        color: #0029ff;
      }
     display: flex;
