@@ -68,7 +68,7 @@ export default {
         },
       );
 
-      if (this.page < (this.pages.length - 2)) { pagMas.push('...', this.pages.length); }
+      if (this.page < (this.pages.length - 3)) { pagMas.push('...', this.pages.length); }
 
       return pagMas;
     },
