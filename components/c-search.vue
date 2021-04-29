@@ -35,7 +35,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
     .header {
         &__search {
             background-color: #ffffff;
@@ -52,5 +53,12 @@ export default {
             background: 0 0;
             width: 250px;
         }
+    }
+    @media screen and (max-width: 600px) {
+
+      .header__search {
+        justify-content: space-between;
+        width: 100%;
+      }
     }
 </style>

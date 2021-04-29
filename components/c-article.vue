@@ -59,14 +59,10 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
+
   .article {
-    padding: 30px 30px 4px;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.05);
     &__header{
       display: flex;
     }
@@ -115,6 +111,22 @@ export default {
     &-align {
       display: flex;
       justify-content: space-between;
+    }
+  }
+  @media screen and (max-width: 600px) {
+
+    .article__header {
+      flex-direction: column;
+    }
+    .article__content {
+      -webkit-line-clamp: 3;
+    }
+    .article__imagebox {
+      margin-right: 0px;
+    }
+    .article__image {
+      width: 100%;
+      height: auto;
     }
   }
 </style>

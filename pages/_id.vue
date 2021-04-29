@@ -110,6 +110,28 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+  @media screen and (max-width: 600px) {
+    .header__wrap {
+      flex-direction: column;
+    }
+  }
+
+  .header {
+  &__wrap {
+     display: flex;
+     justify-content: space-between;
+     border-bottom: #E5E5E5 solid 1px;
+     padding: 36px 0 36px 0;
+     align-items: center;
+   }
+  }
+  .filter {
+    display: flex;
+    justify-content: space-between;
+    padding: 26px 0 28px 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
 
 </style>

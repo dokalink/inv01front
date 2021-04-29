@@ -9,22 +9,21 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
   .header {
-
-  &__wrap {
-     display: flex;
-     justify-content: space-between;
-     border-bottom: #E5E5E5 solid 1px;
-     padding: 36px 0 36px 0;
-     align-items: center;
-
-   }
   &__title {
      display: flex;
      align-items: center;
    }
-
   }
 
+  @media screen and (max-width: 600px) {
+
+    .header__title {
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
 </style>

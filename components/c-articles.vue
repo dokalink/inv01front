@@ -30,36 +30,17 @@ export default {
 
 </script>
 
-<style lang="scss">
-  @media screen and (max-width: 600px) {
-    .article.articles__article{
-      width: calc(1/1*100% - 20px);
-    }
-    .header .header__wrap {
-      flex-direction: column;
-    }
-    .header .header__title {
-      justify-content: space-between;
-      width: 100%;
-      margin-bottom: 10px;
-    }
-    .header .header__search {
-      justify-content: space-between;
-      width: 100%;
-    }
-    .article .article__header {
-      flex-direction: column;
-    }
-    .article .article__content {
-      -webkit-line-clamp: 3;
-    }
-    .article .article__imagebox {
-      margin-right: 0px;
-    }
-    .article .article__image {
-      width: 100%;
-      height: auto;
-    }
+<style lang="scss" scoped>
+
+
+
+  .article {
+    padding: 30px 30px 4px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.05);
   }
 
   .articles {
@@ -73,6 +54,12 @@ export default {
       }
     &__article-imgon {
       width: calc(100% - 20px);
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .article {
+      width: calc(1 / 1 * 100% - 20px);
     }
   }
 </style>

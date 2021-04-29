@@ -90,7 +90,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" >
   .pagination {
      .nuxt-link-active{
        color: #0029ff;

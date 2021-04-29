@@ -35,26 +35,18 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .filter {
-        &__domen {
-            cursor: pointer;
-        }
+      &__domen {
+        cursor: pointer;
         display: flex;
-        justify-content: space-between;
-        padding: 26px 0 28px 0;
-        font-size: 14px;
-        font-weight: bold;
-        &__domitem {
-            &-active {
-                color: #000000;
-            }
-            padding-right: 6px;
-            color: #0029FF;
-        }
-
-        &__domen, &__image {
-            display: flex;
+      }
+      &__domitem {
+          &-active {
+           color: #000000;
+           }
+           padding-right: 6px;
+           color: #0029FF;
         }
     }
 </style>

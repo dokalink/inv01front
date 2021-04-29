@@ -1,7 +1,7 @@
 <template>
   <div class="filter__image">
     <button
-            class="filter__imgon"
+      class="filter__imgon"
       @click="$emit('imgOn', true)"
     >
       <svg
@@ -23,11 +23,10 @@
           height="8"
         />
       </svg>
-    </button >
+    </button>
     <button
-            class="filter__imgoff"
-     @click="$emit('imgOn', false)"
-
+      class="filter__imgoff"
+      @click="$emit('imgOn', false)"
     >
       <svg
         :class="{ 'filter__icon-active': imgOn }"
@@ -59,7 +58,7 @@
           height="8"
         />
       </svg>
-    </button >
+    </button>
   </div>
 </template>
 
@@ -74,15 +73,20 @@ export default {
 };
 </script>
 
-<style lang="scss">
-    .filter__imgon {
+<style lang="scss" scoped>
+  .filter {
+    &__image {
+        display: flex;
+    }
+    &__imgon {
         padding-right: 10px;
     }
-    .filter__icon {
+    &__icon {
         &-active {
             rect {
                 fill: #C4C4C4;
             }
         }
     }
+  }
 </style>
