@@ -8,9 +8,8 @@
       </p>
       <nuxt-link
         v-if="pag !== '...'"
-        :to="{ name: 'id', params: {id : pag , posts: posts, imgOn: imgOn
-                                    , filterDomen: filterDomen, perPage: perPage}
-               , query: {search: search}}"
+        :to="linkPage(pag)"
+
         class="pagination__item"
         :class="{ 'link-active': linkActive & pag == 1}"
       >
@@ -75,6 +74,22 @@ export default {
   },
 
   methods: {
+    linkPage(pag) {
+      const linkTmp = {
+        name: 'id',
+        params:
+                {
+                  id: pag,
+                  posts: this.posts,
+                  imgOn: this.imgOn,
+                  filterDomen: this.filterDomen,
+                  perPage: this.perPage,
+                },
+      };
+      if (!(this.search === '')) linkTmp.query = { search: this.search };
+      return linkTmp;
+    },
+
     pageStart(carentPage, maxPages) {
       if (carentPage < 4) {
         return 0;
