@@ -95,6 +95,10 @@ export default {
   created() {
     this.setPages();
   },
+  validate({ params }) {
+    if (!params.id) return true;
+    return /^\d+$/.test(params.id);
+  },
   methods: {
     async getUpdate() {
       const articles = await this.$axios.$get('https://inv01back.herokuapp.com/api/rss');
