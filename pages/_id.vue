@@ -45,6 +45,11 @@
 
 export default {
   layout: 'project',
+  validate({ params }) {
+    if (!params.id) return true;
+    if (params.id === 'update') return true;
+    return /^\d+$/.test(params.id);
+  },
   async asyncData(context) {
     if (context.route.params.posts) { return {}; }
     const posts = await context.$axios.$get('https://inv01back.herokuapp.com/api/rss');
@@ -95,14 +100,9 @@ export default {
   created() {
     this.setPages();
   },
-  validate({ params }) {
-    if (!params.id) return true;
-    return /^\d+$/.test(params.id);
-  },
   methods: {
-    async getUpdate() {
-      const articles = await this.$axios.$get('https://inv01back.herokuapp.com/api/rss');
-      this.posts = articles;
+    getUpdate() {
+      this.$router.push('/');
     },
 
     setPages() {

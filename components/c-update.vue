@@ -3,6 +3,7 @@
     class="header__update"
     @click="$emit('getUpdate')"
   >
+
     <svg
       width="20"
       height="20"
