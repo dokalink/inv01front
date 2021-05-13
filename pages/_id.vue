@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     getUpdate() {
-      this.$router.push('/');
+      this.$route.path === '/' ? this.$router.push('/1') : this.$router.push('/');
     },
 
     setPages() {
